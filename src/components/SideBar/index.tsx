@@ -28,6 +28,12 @@ export default function SocialSidebar() {
           Message Me
           </a>
         </button>
+          <button
+          className=" bg-amber-950 rounded px-3 py-2 text-white hover:bg-amber-500"
+        > <a href='/mycv.pdf'>
+          Resume CV
+          </a>
+        </button>
         {/* {showForm && (
           <div className="mt-4">
            <ContactForm />
