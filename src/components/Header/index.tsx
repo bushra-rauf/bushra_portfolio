@@ -2,6 +2,7 @@
 import DesktopMenu from "../DesktopMenu"
 import AnimatedLogo from "../AnimatedLogo"
 import MobileMenu from "../MobileMenu"
+import { menuItems } from "@/data"
 const Header = () => {
     return(
         <div className='bg-gradient-to-b from-white to-indigo-400 flex items-center p-4 justify-between w-full shadow-md'>
@@ -9,7 +10,7 @@ const Header = () => {
             <AnimatedLogo />
           </div>
           <div className='items-center block md:hidden'>
-            <MobileMenu/>
+            <MobileMenu name={menuItems}/>
           </div>
           <div className="hidden md:block">            
             <DesktopMenu/>

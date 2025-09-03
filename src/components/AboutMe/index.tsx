@@ -1,7 +1,13 @@
 'use client'
-import { motion } from "framer-motion";
 
-const containerVariants = {
+import { motion, Variants } from "framer-motion";
+
+interface AboutMeProps {
+  className?: string; // optional className for extra styling
+}
+
+// Type-safe container variants
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -11,16 +17,27 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+// Type-safe item variants
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1], // cubic-bezier array, TypeScript safe
+    },
+  },
 };
 
-const AboutMe = () => {
+const AboutMe: React.FC<AboutMeProps> = ({ className }) => {
   return (
-    <section id="about" className="py-20 bg-gradient-to-b from-white to-indigo-400">
+    <section
+      id="about"
+      className={`py-20 bg-gradient-to-b from-white to-indigo-400 ${className}`}
+    >
       <div className="max-w-4xl mx-auto px-6 text-center">
-        {/* Stagger animation container */}
+        {/* Staggered animation container */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -43,7 +60,9 @@ const AboutMe = () => {
             I'm a Front-End Developer based in Sweden, currently studying at{" "}
             <span className="font-semibold text-indigo-500">FutureGames</span>.  
             I specialize in{" "}
-            <span className="font-semibold">React, Next.js, TypeScript, and Tailwind CSS</span>.  
+            <span className="font-semibold">
+              React, Next.js, TypeScript, and Tailwind CSS
+            </span>.  
             I love building clean, accessible, and responsive web applications.
           </motion.p>
 
@@ -51,7 +70,10 @@ const AboutMe = () => {
           <motion.div
             variants={itemVariants}
             className="mt-10 p-6 bg-white shadow-xl rounded-2xl border border-indigo-100"
-            whileHover={{ scale: 1.05, boxShadow: "0px 10px 25px rgba(79, 70, 229, 0.2)" }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 10px 25px rgba(79, 70, 229, 0.2)",
+            }}
             animate={{
               y: [0, -10, 0], // float up and down
             }}
@@ -61,7 +83,9 @@ const AboutMe = () => {
               ease: "easeInOut",
             }}
           >
-            <p className="text-indigo-600 font-medium">✨ Passionate about modern UI/UX</p>
+            <p className="text-indigo-600 font-medium">
+              ✨ Passionate about modern UI/UX
+            </p>
           </motion.div>
         </motion.div>
       </div>
@@ -70,5 +94,3 @@ const AboutMe = () => {
 };
 
 export default AboutMe;
-
-
